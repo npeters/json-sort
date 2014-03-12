@@ -15,6 +15,7 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonGenerator.Feature;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter.Lf2SpacesIndenter;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -41,6 +42,15 @@ public class Main {
 		}
 		in = CharStreams.toString(new InputStreamReader(stream, Charset
 				.forName("UTF-8")));
+
+		String result = sort(in);
+
+		System.out.println(result);
+
+	}
+
+	protected static String sort(String in) throws IOException,
+			JsonParseException, JsonProcessingException {
 		JsonFactory factory = new JsonFactory();
 		factory.configure(JsonParser.Feature.AUTO_CLOSE_SOURCE, false);
 		factory.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
@@ -58,9 +68,8 @@ public class Main {
 
 		DefaultPrettyPrinter pp = new DefaultPrettyPrinter();
 		pp.indentArraysWith(new Lf2SpacesIndenter());
-
-		System.out.println(mapper.writer(pp).writeValueAsString(tree));
-
+		String result = mapper.writer(pp).writeValueAsString(tree);
+		return result;
 	}
 
 	private static void sort(JsonNode tree) {
