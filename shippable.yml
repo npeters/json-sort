@@ -1,0 +1,4 @@
+script:
+ - mkdir -p .elasticbeanstalk
+ - cp config .elasticbeanstalk
+ - mvn compile
