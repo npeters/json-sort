@@ -1,3 +1,5 @@
+DEPRECATED: you should used 'jq -S' 
+
 json sort 
 ----------
 Sort all the json key,array and value and generate a canonical json.
@@ -5,3 +7,7 @@ It after easier to compare
 
 cat package.json | java -cp json-sort-0.0.1-SNAPSHOT.jar  Main -
 java -cp json-sort-0.0.1-SNAPSHOT.jar  Main package.json
+
+
+
+
